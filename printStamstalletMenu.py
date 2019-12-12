@@ -24,8 +24,7 @@ url = 'http://stamstallet.se/lunch/'
 try:
     resp = request.urlopen(url).read().decode('utf-8')
 except:
-    print('ERROR: Could not open ', url)
-    exit()
+    raise SystemExit('[ERROR]: Could not open {}'.format(url))
 
 # removing everything in brakets
 bracket = re.compile(r'<.*?>')
@@ -43,4 +42,4 @@ for i, line in enumerate(nonEmptyLines):
         print('\n'+'='*tabWidth+'\n')
         exit()
 
-print('ERROR: Could find the daily menu in ', url)
+raise SystemExit('[ERROR]: Could find the daily menu in {}'.format(url))
